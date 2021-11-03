@@ -22,13 +22,13 @@ jobs:
           java-version: '11'
 
       - name: Build with Maven
-        run: mvn -f Backend/everis-dar-todo-list-ms-1/pom.xml clean install
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/Backend/everis-dar-todo-list-ms-1/target/*.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
     runs-on: windows-latest
@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'everis-dar-todo-list-ms'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_510A54EC8F01472D971796C9B1FA0325 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AE85D1F981E94BCBA5523387812177FD }}
           package: '*.jar'
